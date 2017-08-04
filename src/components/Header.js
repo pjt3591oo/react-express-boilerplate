@@ -13,6 +13,7 @@ class Header extends React.Component {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/router1'>router1</Link></li>
                     <li><Link to='/router2'>router2</Link></li>
+                    <li><Link to='/router3'>router3</Link></li>
                   </ul>
                 </nav>
             </header>
