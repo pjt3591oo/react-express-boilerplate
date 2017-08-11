@@ -51,10 +51,10 @@ app.get('/email', function(req, res, next){
         c: 'mung'
     };
     email({toEmail: toEmail, infos: infos}).then(()=>{
-        res.send(toEmail + ' 이메일 발송 성공')
+        res.send(toEmail + ' 이메일 발송 성공');
     }, err => {
         console.log(err);
-        res.send(toEmail + ' 이메일 발송 실패')
+        res.send(toEmail + ' 이메일 발송 실패');
     })
 });
 
@@ -62,14 +62,38 @@ app.get('/email', function(req, res, next){
 import authenticate from './utils/authenticate';
 
 app.get('/authenticate', authenticate, function(req, res, next){
-    res.send('authenticate success')
+    res.send('authenticate success');
 });
 
 // authenticate 인증 실패시 호출
 app.get('/authenticate/failed', function(req, res, next){
-    res.send('authenticate failed')
+    res.send('authenticate failed');
 });
 
+// 3. file upload(multer) 테스트
+import {local} from './utils/file';
+
+app.get('/file', function(req, res){
+    console.log(local);
+    res.end(`
+        <!DOCTYPE html>
+        <html>
+          <head>
+            <meta charset="utf-8">
+          </head>
+          <body>
+            <form action="/file/upload" method="post" enctype="multipart/form-data">
+              <input type="file" name="name">
+              <input type="submit">
+            </form>
+          </body>
+        </html>`
+    )
+});
+
+app.post('/file/upload', local.single('name'), function(req, res, next){
+    res.send('file upload success');
+});
 
 const server = app.listen(port, () => {
     console.log('Express listening on port', port);
