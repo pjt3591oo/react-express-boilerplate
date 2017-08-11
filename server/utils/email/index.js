@@ -2,10 +2,12 @@
  * Created by bagjeongtae on 2017. 8. 7..
  */
 const nodemailer = require('nodemailer');
-const {email, password} = require('../../config/EMAIL')["GMAIL"];
+const {email, password} = require('../../../server/config/EMAIL')["GMAIL"];
 const jade = require('jade');
 
-const filePath = __dirname + '/server/utils/email/temp.jade';
+import path from 'path';
+
+const filePath = path.join(__dirname, '../../../server/utils/email/template.jade');
 
 module.exports = ({toEmail, infos})=>{
     return new Promise( (resolve, reject) => {

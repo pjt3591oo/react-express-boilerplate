@@ -1,11 +1,11 @@
 {
     "facebook": {
-        "clientID": "",
-        "clientSecret": ""
+        "clientID": "1",
+        "clientSecret": "2"
     },
 
     "naver": {
-        "clientID": "",
-        "clientSecret": ""
+        "clientID": "3",
+        "clientSecret": "4"
     }
 }

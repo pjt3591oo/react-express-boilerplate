@@ -9,7 +9,9 @@ const BUCKET_NAME = "popupretail";
 
 const logoFileUpload = require('multer')({ dest: FILE_UPLOAD_PATH_LOCAL });
 
-AWS.config.loadFromPath('../../server/config/AWS.json');
+import path from 'path';
+
+AWS.config.loadFromPath(path.join(__dirname, '../../../server/config/AWS.json'));
 
 const s3 = new AWS.S3();
 

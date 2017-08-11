@@ -3,7 +3,7 @@
  */
 const NverStrategy = require('passport-naver').Strategy;
 
-const {clientID, clientSecret} = require('../../config/PASSPORT.json')['naver'];
+const {clientID, clientSecret} = require(path.join(__dirname, '../../../server/config/PASSPORT.json'))['naver'];
 
 module.exports = new NverStrategy({
         clientID: clientID,

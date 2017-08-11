@@ -3,7 +3,10 @@
  */
 
 const FacebookStrategy = require('passport-facebook').Strategy;
-const {clientID, clientSecret} = require('../../config/PASSPORT.json')['facebook'];
+
+import path from 'path';
+
+const {clientID, clientSecret} = require(path.join(__dirname, '../../../server/config/PASSPORT.json'))['facebook'];
 
 module.exports = new FacebookStrategy({
         clientID: clientID,

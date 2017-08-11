@@ -24,12 +24,38 @@ app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, '../server/public')));
 
-//리엑트로 만든 페이지 라우트
+
+
+/* ==== 리엑트로 만든 페이지 라우트 ==== */
 app.use('/react', express.static(__dirname + '/../public'));
 
-//API 라우트
+
+
+/* ==== API 라우트 ====*/
 import API01V from './routes/API1.0V';
+
 app.use('/posts', API01V);
+
+
+
+/* ==== utils 테스트 ==== */
+import email from './utils/email';
+
+//email 테스트
+app.get('/email', function(req, res, next){
+    let toEmail = 'pjt3591oo@naver.com';
+    let infos = {
+        a: 'email',
+        b: 'test',
+        c: 'mung'
+    };
+    email({toEmail: toEmail, infos: infos}).then(()=>{
+        res.send(toEmail + ' 이메일 발송 성공')
+    }, err => {
+        console.log(err);
+        res.send(toEmail + ' 이메일 발송 실패')
+    })
+});
 
 const server = app.listen(port, () => {
     console.log('Express listening on port', port);
