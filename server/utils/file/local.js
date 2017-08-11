@@ -16,12 +16,12 @@ function rename(oriname){
 
 let storage = multer.diskStorage({
     destination: function (req, file, cb) {
-
         cb(null, path.join(__dirname, "../../../server/uploads/"));
     },
     filename: function (req, file, cb) {
         let originName = file.originalname;
         let newName = rename(originName);
+
         cb(null, newName);
     }
 });

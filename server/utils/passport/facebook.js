@@ -11,11 +11,10 @@ const {clientID, clientSecret} = require(path.join(__dirname, '../../../server/c
 module.exports = new FacebookStrategy({
         clientID: clientID,
         clientSecret: clientSecret,
-        callbackURL: "http://localhost:3000/user/auth/callback",
+        callbackURL: "http://121.161.16.47:3000/passport/callback",
         profileFields: ['id', 'displayName', 'photos', 'email', 'gender', 'name']
     },
     function(accessToken, refreshToken, profile, done) {
-        console.log(accessToken);
-        done(null, {message: 'success'});
+        done(null, profile); //두번째 인자가 req.user에 저장된다. 즉 세션에 저장됨.
     }
 );

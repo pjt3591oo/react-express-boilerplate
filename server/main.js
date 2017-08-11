@@ -1,8 +1,15 @@
 import express from 'express';
+import session from 'express-session';
+
 import WebpackDevServer from 'webpack-dev-server';
 import webpack from 'webpack';
 
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+
 import path from 'path';
+import Passport from './utils/passport';
 
 const app = express();
 const port = 3000;
@@ -22,9 +29,23 @@ if(process.env.NODE_ENV == 'development') {
 
 app.set('views', path.join(__dirname, '../server/views'));
 app.set('view engine', 'jade');
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use( session({
+    secret: '2C44774A-D649-4D44-9535-46E296EF984F',
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: true
+}));
+
 app.use(express.static(path.join(__dirname, '../server/public')));
 
-
+// passport를 사용하기 위해 미들웨어 추가해줘야 한다.
+app.use(Passport.initialize());
+app.use(Passport.session());
 
 /* ==== 리엑트로 만든 페이지 라우트 ==== */
 app.use('/react', express.static(__dirname + '/../public'));
@@ -91,8 +112,32 @@ app.get('/file', function(req, res){
     )
 });
 
+// multer 테스트
 app.post('/file/upload', local.single('name'), function(req, res, next){
     res.send('file upload success');
+});
+
+// aws s3 보류
+
+// 4. passport 테스트
+import passport from './utils/passport'
+
+app.get('/passport/facebook/signin', passport.authenticate('facebook'));
+
+app.get('/passport/callback',
+    passport.authenticate('facebook',
+        {
+            successRedirect: '/passport/success',
+            failureRedirect: '/passport/failed'
+    })
+);
+
+app.get('/passport/success', function(req, res, next){
+    res.send(req.user);
+});
+
+app.get('/passport/failed', function(req, res, next){
+    res.send('passport facebook login failed');
 });
 
 const server = app.listen(port, () => {
