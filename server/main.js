@@ -39,9 +39,10 @@ app.use('/posts', API01V);
 
 
 /* ==== utils 테스트 ==== */
+
+// 1. email 테스트
 import email from './utils/email';
 
-//email 테스트
 app.get('/email', function(req, res, next){
     let toEmail = 'pjt3591oo@naver.com';
     let infos = {
@@ -56,6 +57,19 @@ app.get('/email', function(req, res, next){
         res.send(toEmail + ' 이메일 발송 실패')
     })
 });
+
+// 2. authenticate 테스트
+import authenticate from './utils/authenticate';
+
+app.get('/authenticate', authenticate, function(req, res, next){
+    res.send('authenticate success')
+});
+
+// authenticate 인증 실패시 호출
+app.get('/authenticate/failed', function(req, res, next){
+    res.send('authenticate failed')
+});
+
 
 const server = app.listen(port, () => {
     console.log('Express listening on port', port);
