@@ -34,11 +34,13 @@ npm run test
 # server utils
 
 
-* 구현
+* test API 구현
 1. authenticate
 2. email
 3. file upload - multer
 4. passport - facebook
 
-* 미구현
+* test API 미구현
 1. jwt
+2. file upload - aws s3
+3. passport - naver
