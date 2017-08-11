@@ -1,0 +1,11 @@
+{
+    "facebook": {
+        "clientID": "",
+        "clientSecret": ""
+    },
+
+    "naver": {
+        "clientID": "",
+        "clientSecret": ""
+    }
+}
