@@ -33,7 +33,6 @@ npm run test
 
 # server utils
 
-
 * test API 구현
 1. authenticate
 2. email

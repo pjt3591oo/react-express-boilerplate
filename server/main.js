@@ -36,7 +36,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use( session({
     secret: '2C44774A-D649-4D44-9535-46E296EF984F',
-    cookie: { maxAge: 60000 },
+    cookie: { maxAge: 600000 * 1000 }, // 단위 1/1000초 == ms
     resave: false,
     saveUninitialized: true
 }));
