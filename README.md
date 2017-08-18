@@ -38,6 +38,7 @@ npm run test
 2. email
 3. file upload - multer
 4. passport - facebook
+4. sms - cafe24 API
 
 * test API 미구현
 1. jwt
