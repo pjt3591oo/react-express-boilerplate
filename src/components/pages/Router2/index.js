@@ -10,7 +10,7 @@ import styles from './index.css';
 class router2 extends React.Component {
     render() {
         return (
-            <h2 className={styles.Router2text}>router2</h2>
+            <h2 className="Router2text">router2</h2>
         );
     }
 }
