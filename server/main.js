@@ -55,8 +55,7 @@ app.use('/react', express.static(__dirname + '/../public'));
 /* ==== API 라우트 ====*/
 import API01V from './routes/API1.0V';
 
-app.use('/posts', API01V);
-
+app.use('/posts', function(req, res, next){}, API01V);
 
 
 /* ==== utils 테스트 ==== */

@@ -7,6 +7,11 @@ import Footer from './Footer';
 
 
 class App extends React.Component {
+    componentWillMount() {
+        document.body.style.margin = 0;
+        document.body.style.padding = 0;
+    }
+
     render() {
         return (
             <div>
